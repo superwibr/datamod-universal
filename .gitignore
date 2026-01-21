@@ -1,0 +1,8 @@
+build
+run
+bin
+.gradle
+.mcreator
+.vscode
+*~
+arc
