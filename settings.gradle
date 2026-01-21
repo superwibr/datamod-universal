@@ -1,0 +1,5 @@
+file('gradle.properties').withInputStream {
+    def props = new Properties()
+    props.load(it)
+    rootProject.name = props.mod_id
+}

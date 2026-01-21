@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+processResources {
+    def props = new Properties()
+    file('gradle.properties').withInputStream {
+        props.load(it) 
+    }
+    inputs.properties props
+
+    filesMatching([
+        "META-INF/*mods.toml",
+        "fabric.mod.json"
+    ]) {
+        expand props
+    }
+}
+
+jar {
+    archiveFileName = "${mod_id}-${minecraft_version}-${mod_version}.jar"
+}
