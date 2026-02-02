@@ -1,6 +1,7 @@
 plugins {
     id 'java'
 }
+
 allprojects {
     processResources {
         def props = new Properties()
@@ -21,10 +22,3 @@ allprojects {
 jar {
     archiveFileName = "${mod_id}-${minecraft_version}-${mod_version}.jar"
 }
-
-// subprojects {
-//     // Disable the 'test' and 'javadoc' tasks in all subprojects
-//     tasks.withType(JavaCompile) {
-//         enabled = false
-//     }
-// }
