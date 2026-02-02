@@ -1,5 +1,20 @@
-file('gradle.properties').withInputStream {
+pluginManagement {
+    repositories {
+        maven { url = "https://maven.fabricmc.net/" }
+        maven { url = "https://files.minecraftforge.net/maven/" }
+        maven { url = "https://maven.neoforged.net/releases" }
+        gradlePluginPortal()
+    }
+}
+
+file("gradle.properties").withInputStream {
     def props = new Properties()
     props.load(it)
     rootProject.name = props.mod_id
 }
+
+include(
+    "run-fabric",
+    "run-forge",
+    "run-neoforge"
+)

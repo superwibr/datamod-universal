@@ -1,22 +1,30 @@
 plugins {
     id 'java'
 }
+allprojects {
+    processResources {
+        def props = new Properties()
+        file("$rootDir/gradle.properties").withInputStream {
+            props.load(it) 
+        }
+        inputs.properties props
 
-processResources {
-    def props = new Properties()
-    file('gradle.properties').withInputStream {
-        props.load(it) 
-    }
-    inputs.properties props
-
-    filesMatching([
-        "META-INF/*mods.toml",
-        "fabric.mod.json"
-    ]) {
-        expand props
+        filesMatching([
+            "META-INF/*mods.toml",
+            "fabric.mod.json"
+        ]) {
+            expand props
+        }
     }
 }
 
 jar {
     archiveFileName = "${mod_id}-${minecraft_version}-${mod_version}.jar"
 }
+
+// subprojects {
+//     // Disable the 'test' and 'javadoc' tasks in all subprojects
+//     tasks.withType(JavaCompile) {
+//         enabled = false
+//     }
+// }
